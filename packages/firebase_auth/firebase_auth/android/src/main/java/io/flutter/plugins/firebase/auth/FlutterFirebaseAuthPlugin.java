@@ -344,8 +344,8 @@ public class FlutterFirebaseAuthPlugin
   private static List<Map<String, Object>> parseUserInfoList(
       List<? extends UserInfo> userInfoList) {
     List<Map<String, Object>> output = new ArrayList<>();
-
-    for (UserInfo userInfo : userInfoList) {
+    Iterator<? extends UserInfo> userInfoListIterator = new ArrayList<? extends UserInfo>(userInfoList).iterator();
+    for (UserInfo userInfo : userInfoListIterator) {
       if (!FirebaseAuthProvider.PROVIDER_ID.equals(userInfo.getProviderId())) {
         output.add(parseUserInfo(userInfo));
       }
